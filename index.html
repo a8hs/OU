@@ -347,6 +347,227 @@ font-size:9px;
 }
 @media(max-width:430px){.number-grid,.facility-grid,.system-grid{grid-template-columns:1fr}}
 @media print{body *{visibility:hidden!important}.result,.result *{visibility:visible!important}.result{display:block!important;position:absolute;inset:0;margin:0;border:0}.result textarea{min-height:900px;border:0}.result .actions{display:none}}
+/* ===== PATCH 01: 소장 인사 영역 안정화 ===== */
+#director{
+position:relative;
+isolation:isolate;
+scroll-margin-top:132px;
+overflow:visible;
+}
+#director .head{
+position:relative;
+z-index:2;
+width:100%;
+}
+.greeting{
+position:relative;
+z-index:1;
+width:100%;
+min-width:0;
+}
+.letter{
+display:flow-root;
+width:100%;
+min-width:0;
+contain:layout paint;
+}
+.letter::after{
+content:"";
+display:block;
+clear:both;
+}
+.director-portrait{
+max-width:100%;
+}
+
+/* ===== PATCH 02: 게시글 이미지 ===== */
+.article-media{
+position:relative;
+display:grid;
+place-items:center;
+width:100%;
+max-width:760px;
+min-height:260px;
+margin:0 0 24px;
+overflow:hidden;
+border:1px solid #c8d1d8;
+background:#dfe4e8;
+color:#66737c;
+text-align:center;
+}
+.article-media img{
+display:block;
+width:100%;
+max-height:520px;
+object-fit:cover;
+}
+.article-media-placeholder{
+display:grid;
+place-items:center;
+width:100%;
+min-height:260px;
+padding:24px;
+background:
+linear-gradient(135deg,rgba(255,255,255,.22),transparent 45%),
+#d7dde1;
+color:#596670;
+font-size:12px;
+font-weight:800;
+}
+.article-media-placeholder span{
+padding:9px 12px;
+border:1px solid rgba(89,102,112,.35);
+background:rgba(255,255,255,.38);
+}
+
+/* ===== PATCH 03: 자유게시판 게시글 ===== */
+.article.community-article{
+border-color:#c7d0d7;
+}
+.community-article .article-head{
+padding:18px 22px;
+border-top-width:2px;
+}
+.community-article .article-head h3{
+margin:5px 0 3px;
+font-family:inherit;
+font-size:19px;
+letter-spacing:-.025em;
+}
+.community-body{
+padding:22px;
+}
+.community-post-text{
+margin:0 0 20px;
+color:#303a42;
+font-size:13px;
+line-height:1.9;
+white-space:pre-line;
+}
+.community-comments{
+margin-top:22px;
+border-top:1px solid #aeb9c1;
+}
+.community-comments h4{
+margin:0;
+padding:12px 4px 9px;
+border-bottom:1px solid #d6dde2;
+color:#273a49;
+font-size:12px;
+}
+.community-comment{
+display:grid;
+grid-template-columns:112px minmax(0,1fr) auto;
+gap:10px;
+align-items:start;
+padding:9px 4px;
+border-bottom:1px solid #e3e7ea;
+background:#fff;
+}
+.community-comment.reply{
+margin-left:26px;
+padding-left:10px;
+border-left:2px solid #c6d0d7;
+}
+.comment-user{
+overflow:hidden;
+color:#53626d;
+font-size:10px;
+font-weight:800;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+.comment-text{
+margin:0;
+color:#303940;
+font-size:11px;
+line-height:1.65;
+word-break:break-word;
+}
+.comment-side{
+color:#929ca4;
+font-size:9px;
+white-space:nowrap;
+}
+.comment-like{
+margin-left:5px;
+color:#647d90;
+}
+.community-tag{
+display:inline-block;
+padding:2px 6px;
+background:#edf2f5;
+color:#506979;
+font-size:9px;
+font-weight:900;
+}
+
+/* ===== PATCH 04: 컴팩트 명령어 안내 ===== */
+.command-grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:7px;
+margin-top:12px;
+}
+.command-card{
+display:grid;
+grid-template-columns:minmax(72px,auto) minmax(0,1fr);
+gap:10px;
+align-items:center;
+min-height:48px;
+padding:9px 11px;
+border:1px solid #d6dde2;
+background:#f8fafb;
+}
+.command-card code{
+display:inline-block;
+padding:4px 7px;
+background:var(--navy);
+color:#fff;
+font-family:inherit;
+font-size:10px;
+font-weight:900;
+text-align:center;
+white-space:nowrap;
+}
+.command-card p{
+margin:0;
+color:#5d6972;
+font-size:10px;
+line-height:1.55;
+}
+
+/* 게시판 모바일 보정 */
+@media(max-width:800px){
+#director{
+scroll-margin-top:72px;
+}
+.article-media,
+.article-media-placeholder{
+min-height:190px;
+}
+.community-body{
+padding:17px 14px;
+}
+.community-comment{
+grid-template-columns:76px minmax(0,1fr);
+gap:7px;
+}
+.comment-side{
+grid-column:2;
+margin-top:-4px;
+}
+.community-comment.reply{
+margin-left:14px;
+}
+.command-grid{
+grid-template-columns:1fr;
+}
+.command-card{
+grid-template-columns:78px minmax(0,1fr);
+}
+}
+
 </style>
 </head>
 <body>
@@ -692,39 +913,392 @@ ${trainee.state}
 `).join("");
   
 const posts=[
-{id:146,cat:"기초교육",title:"제14차 기초 질서교육 참관 기록",target:"112번",staff:"교관 K",date:"03.07",views:841,text:"생활 규칙 숙지와 지시 이행을 중심으로 정기 교육을 실시했습니다. 대상자는 초기 설명 중 세 차례 질문했으나 반복 안내 이후 요구된 순서를 이행했습니다.",scores:[["규정 이해","78"],["지시 이행","84"],["태도 안정","91"],["재교육","불필요"]]},
-{id:145,cat:"우수사례",title:"117번 신규 입소자 1주차 적응 경과",target:"117번",staff:"교관 A",date:"03.05",views:1260,text:"대상자는 형질 제도에 대한 기초 지식이 부족했으나 질문과 기록을 통해 빠르게 적응했습니다. 다른 세계에서 왔다는 진술은 교육 적응 과정에서 흔히 관찰되는 회피성 표현으로 분류했습니다.",scores:[["이론","88"],["생활","81"],["순응","76"],["등급","일반"]]},
-{id:144,cat:"특별교육",title:"115번 특별교육 후 행동 변화 보고",target:"115번",staff:"교관 B",date:"03.02",views:3294,text:"반복적인 도발과 규정 경시가 관찰되어 특별교육을 시행했습니다. 교육 직후 언어적 반발 빈도는 감소했으나 내적 반성 여부는 확인되지 않았습니다.",scores:[["반발 빈도","-32%"],["지시 이행","+19%"],["반성","미확인"],["관찰","계속"]]},
-{id:143,cat:"생활지도",title:"본딩 제도 이해교육 질의응답",target:"전 교육생",staff:"교관 D",date:"02.27",views:905,text:"본딩과 마킹의 법적 차이, 관계 등록 절차, 미등록 개체의 사회생활 제한에 관한 질의응답을 진행했습니다.",scores:[["참석","30명"],["이수","27명"],["보충","3명"],["평균","82점"]]},
-{id:142,cat:"시민참관",title:"토요일 공개교육 시민 참관 후기",target:"공개 회차",staff:"니키",date:"02.22",views:1742,text:"시민 참관단 18명이 기초 생활교육을 참관했습니다. 교육 대상자와의 직접 접촉은 허용되지 않았으며 모든 이동은 지정 인솔자의 통제 아래 진행되었습니다.",scores:[["참관","18명"],["만족","89%"],["통제위반","0건"],["재신청","12명"]]}
-];
-let currentCat="전체";
-const cats=["전체","기초교육","생활지도","우수사례","특별교육","시민참관"];
-$("#categories").innerHTML=cats.map(c=>`<button class="category ${c==="전체"?"active":""}" data-cat="${c}">${c}</button>`).join("");
-function renderBoard(){
-const q=$("#searchInput").value.trim();
-const list=posts.filter(p=>(currentCat==="전체"||p.cat===currentCat)&&(!q||`${p.title} ${p.target}`.includes(q)));
-$("#board").innerHTML=`<div class="board-row header"><span>번호</span><span>분류</span><span>제목</span><span>담당</span><span>등록일</span><span>조회</span></div>`+
-list.map(p=>`<button class="board-row" data-post="${p.id}"><span>${p.id}</span><span>${p.cat}</span><span class="post-title">[${p.target}] ${p.title}</span><span>${p.staff}</span><span>${p.date}</span><span>${p.views}</span></button>`).join("");
-$$("[data-post]").forEach(b=>b.onclick=()=>openPost(+b.dataset.post));
+{
+id:149,
+cat:"자유게시판",
+community:true,
+title:"L교관님 사진은 왜 20년 전 사진인가요?",
+target:"자유게시판",
+staff:"익명",
+date:"03.10",
+views:4821,
+text:"명부 볼 때마다 궁금한데 L교관님 사진만 유독 옛날 사진 같은데 이유 아는 사람?",
+image:"",
+imageDesc:"교직원 공개 명부에 등록된 L교관 프로필 사진",
+comments:[
+{user:"행정동복사기",text:"사진 바꾸기 귀찮으시답니다.",time:"14:02",likes:84},
+{user:"dice6",text:"근데 지금도 동안이긴 하시잖아요. 셰퍼드보다 다이스가 연상인 거 실화?",time:"14:04",likes:63},
+{user:"익명77",text:"근데 왜 셰퍼드가 수석이고 다이스는 일반임?",time:"14:08",likes:31},
+{user:"교육소관계자",text:"수석도 달기 귀찮으시답니다.",time:"14:09",likes:112,reply:true},
+{user:"주사위금지",text:"이쯤 되면 귀찮음이 인사평가보다 강한 거 아니냐",time:"14:12",likes:27},
+{user:"A동야간반",text:"ㄴ L교관이면 가능함",time:"14:14",likes:18,reply:true}
+]
+},
+{
+id:148,
+cat:"자유게시판",
+community:true,
+title:"매뉴얼 손맛 못 잊어서 다시 교육소 입소하고 싶은데 정상인가요?",
+target:"자유게시판",
+staff:"익명",
+date:"03.10",
+views:7350,
+text:"퇴소한 지 두 달 됐는데 자꾸 금요일 시험이랑 생활점검 생각남.\n이 정도면 재입소 문의 넣어봐도 되는 부분?",
+image:"",
+imageDesc:"교육소 생활규정 매뉴얼과 금요일 시험지",
+comments:[
+{user:"삑삑이",text:"삑! 정상입니다.",time:"11:21",likes:156},
+{user:"대기번호38",text:"줄 서라",time:"11:22",likes:91},
+{user:"정신차려",text:"교육소 일 하고 있는 거 맞음? 애들이 교육소 가서 정신을 차린 게 아니라 더 문란해져서 왔네;; 누가 좀 잡아가라",time:"11:27",likes:74},
+{user:"재입소희망",text:"잡아가면 땡큐임",time:"11:28",likes:103,reply:true},
+{user:"D동순찰",text:"나만 빅D파임?",time:"11:31",likes:47},
+{user:"곰같은게좋아",text:"ㄹㅇ 빅D가 진국 ㅋㅋ 얼음왕자 뭐가 좋다고;",time:"11:33",likes:68,reply:true},
+{user:"작은것도좋아",text:"나는 스몰D ♡",time:"11:35",likes:22},
+{user:"교육행정과",text:"ㄴ 이새끼 돌았네.",time:"11:36",likes:139,reply:true},
+{user:"익명904",text:"행정과 닉 달고 이래도 됨?",time:"11:39",likes:55},
+{user:"교육행정과",text:"동명이인입니다.",time:"11:40",likes:120,reply:true}
+]
+},
+{
+id:147,
+cat:"자유게시판",
+community:true,
+title:"에티엔 옥션 언제 올라옴?",
+target:"자유게시판",
+staff:"익명",
+date:"03.09",
+views:9624,
+text:"전직 의원을 내 밑에? ㅗㅜㅑ\n에티엔 교육 끝나기만 기다리면서 노가다 뛰고 있다.",
+image:"",
+imageDesc:"에티엔 옥션 예정 목록을 검색한 화면",
+comments:[
+{user:"현실직시",text:"ㅋㅋㅋㅋㅋ 망상 에지노. 꿈깨라. 의사당 노친네들 비자금 깨서 줄 서 있단다.",time:"22:14",likes:205},
+{user:"구지역구민",text:"ㅜㅜㅜㅜ 의원님ㅜㅜㅜㅜ 왜 그러셨어요 팬이었는데...ㅜㅜㅜ",time:"22:17",likes:61},
+{user:"선거는신중히",text:"애초에 오메가를 의원 시킨 지역구 인간들이 미친 거지.",time:"22:20",likes:88},
+{user:"익명441",text:"ㄴ 당선될 때는 다들 개혁의 상징이라고 좋아했잖아",time:"22:22",likes:35,reply:true},
+{user:"통장잔고0",text:"가격 공개되면 여기 있는 사람들 전부 조용해질 듯",time:"22:25",likes:97},
+{user:"노가다3일차",text:"일단 꿈꾸는 건 공짜잖아 냅둬라",time:"22:31",likes:42}
+]
+},
+{
+id:146,
+cat:"기초교육",
+title:"제14차 기초 질서교육 참관 기록",
+target:"112번",
+staff:"교관 K",
+date:"03.07",
+views:841,
+text:"생활 규칙 숙지와 지시 이행을 중심으로 정기 교육을 실시했습니다. 대상자는 초기 설명 중 세 차례 질문했으나 반복 안내 이후 요구된 순서를 이행했습니다.",
+image:"",
+imageDesc:"제14차 기초 질서교육이 진행되는 교육실",
+scores:[["규정 이해","78"],["지시 이행","84"],["태도 안정","91"],["재교육","불필요"]]
+},
+{
+id:145,
+cat:"우수사례",
+title:"117번 신규 입소자 1주차 적응 경과",
+target:"117번",
+staff:"교관 A",
+date:"03.05",
+views:1260,
+text:"대상자는 형질 제도에 대한 기초 지식이 부족했으나 질문과 기록을 통해 빠르게 적응했습니다. 다른 세계에서 왔다는 진술은 교육 적응 과정에서 흔히 관찰되는 회피성 표현으로 분류했습니다.",
+image:"",
+imageDesc:"117번 신규 입소자의 1주차 적응 교육 기록",
+scores:[["이론","88"],["생활","81"],["순응","76"],["등급","일반"]]
+},
+{
+id:144,
+cat:"특별교육",
+title:"115번 특별교육 후 행동 변화 보고",
+target:"115번",
+staff:"교관 B",
+date:"03.02",
+views:3294,
+text:"반복적인 도발과 규정 경시가 관찰되어 특별교육을 시행했습니다. 교육 직후 언어적 반발 빈도는 감소했으나 내적 반성 여부는 확인되지 않았습니다.",
+image:"",
+imageDesc:"115번 특별교육 후 행동 변화 관찰 기록",
+scores:[["반발 빈도","-32%"],["지시 이행","+19%"],["반성","미확인"],["관찰","계속"]]
+},
+{
+id:143,
+cat:"생활지도",
+title:"본딩 제도 이해교육 질의응답",
+target:"전 교육생",
+staff:"교관 D",
+date:"02.27",
+views:905,
+text:"본딩과 마킹의 법적 차이, 관계 등록 절차, 미등록 개체의 사회생활 제한에 관한 질의응답을 진행했습니다.",
+image:"",
+imageDesc:"본딩 제도 이해교육에 사용된 관계 등록 절차 자료",
+scores:[["참석","30명"],["이수","27명"],["보충","3명"],["평균","82점"]]
+},
+{
+id:142,
+cat:"시민참관",
+title:"토요일 공개교육 시민 참관 후기",
+target:"공개 회차",
+staff:"니키",
+date:"02.22",
+views:1742,
+text:"시민 참관단 18명이 기초 생활교육을 참관했습니다. 교육 대상자와의 직접 접촉은 허용되지 않았으며 모든 이동은 지정 인솔자의 통제 아래 진행되었습니다.",
+image:"",
+imageDesc:"토요일 공개교육 시민 참관단의 교육실 입장 모습",
+scores:[["참관","18명"],["만족","89%"],["통제위반","0건"],["재신청","12명"]]
 }
+];
+
+let currentCat="전체";
+const cats=["전체","자유게시판","기초교육","생활지도","우수사례","특별교육","시민참관"];
+
+$("#categories").innerHTML=cats.map(c=>`
+<button class="category ${c==="전체"?"active":""}" data-cat="${c}">
+${c}
+</button>
+`).join("");
+
+function postSearchText(post){
+const commentText=(post.comments||[]).map(comment=>comment.text).join(" ");
+return `${post.title} ${post.target} ${post.staff} ${post.text} ${commentText}`;
+}
+
+function renderBoard(){
+const q=$("#searchInput").value.trim().toLowerCase();
+
+const list=posts.filter(post=>{
+const categoryMatch=currentCat==="전체"||post.cat===currentCat;
+const searchMatch=!q||postSearchText(post).toLowerCase().includes(q);
+return categoryMatch&&searchMatch;
+});
+
+$("#board").innerHTML=`
+<div class="board-row header">
+<span>번호</span>
+<span>분류</span>
+<span>제목</span>
+<span>작성자</span>
+<span>등록일</span>
+<span>조회</span>
+</div>
+${list.length
+?list.map(post=>`
+<button class="board-row" data-post="${post.id}">
+<span>${post.id}</span>
+<span>${post.cat}</span>
+<span class="post-title">
+${post.community?"":"["+post.target+"] "}
+${post.title}
+</span>
+<span>${post.staff}</span>
+<span>${post.date}</span>
+<span>${post.views.toLocaleString()}</span>
+</button>
+`).join("")
+:`<div style="padding:38px;text-align:center;color:#7d8992;font-size:12px;">
+검색 결과가 없습니다.
+</div>`
+}
+`;
+
+$$("[data-post]").forEach(button=>{
+button.onclick=()=>openPost(Number(button.dataset.post));
+});
+}
+
+function renderPostImage(post){
+const description=post.imageDesc||"게시글 첨부 이미지";
+
+if(!post.image){
+return `
+<div class="article-media">
+<div class="article-media-placeholder">
+<span>[이미지: ${description}]</span>
+</div>
+</div>
+`;
+}
+
+return `
+<div class="article-media">
+<img
+src="${post.image}"
+alt="${description}"
+onerror="
+this.style.display='none';
+this.nextElementSibling.style.display='grid';
+"
+>
+<div
+class="article-media-placeholder"
+style="display:none;"
+>
+<span>[이미지: ${description}]</span>
+</div>
+</div>
+`;
+}
+
+function renderCommunityComments(comments=[]){
+return `
+<div class="community-comments">
+<h4>댓글 ${comments.length}</h4>
+${comments.map(comment=>`
+<div class="community-comment ${comment.reply?"reply":""}">
+<div class="comment-user">${comment.reply?"└ ":""}${comment.user}</div>
+<p class="comment-text">${comment.text}</p>
+<div class="comment-side">
+${comment.time||""}
+<span class="comment-like">추천 ${comment.likes||0}</span>
+</div>
+</div>
+`).join("")}
+</div>
+`;
+}
+
 function openPost(id){
-const p=posts.find(x=>x.id===id), comments=[
+const post=posts.find(item=>item.id===id);
+if(!post)return;
+
+if(post.community){
+$("#article").className="article community-article open";
+$("#article").innerHTML=`
+<div class="article-head">
+<small class="community-tag">자유게시판</small>
+<h3>${post.title}</h3>
+<div class="meta">
+작성자 ${post.staff} · ${post.date} · 조회 ${post.views.toLocaleString()}
+</div>
+</div>
+<div class="community-body">
+${renderPostImage(post)}
+<p class="community-post-text">${post.text}</p>
+${renderCommunityComments(post.comments)}
+<div style="margin-top:18px;">
+<button class="close" type="button">목록으로</button>
+</div>
+</div>
+`;
+}else{
+const comments=[
 ["시민4218","처음 공개됐을 때보다 태도가 많이 정돈된 것 같습니다."],
 ["공개참관자","평가 수치와 다음 교육 결과도 함께 공개해 주세요."],
 ["안전우선","처분이 관대해지지 않도록 지속적인 관리가 필요합니다."]
 ];
-$("#article").innerHTML=`<div class="article-head"><small>${p.cat}</small><h3>${p.title}</h3><div class="meta">대상 ${p.target} · 담당 ${p.staff} · 조회 ${p.views}</div></div><div class="article-body"><p>${p.text}</p><div class="scores">${p.scores.map(s=>`<div class="score"><b>${s[1]}</b><small>${s[0]}</small></div>`).join("")}</div><p>본 기록은 시민의 질서 의식 함양과 교육행정의 투명성 확보를 위해 공개되었습니다. 대상자의 현재 상태에 따라 공개 범위는 조정될 수 있습니다.</p><div class="comments"><h4>시민 의견</h4>${comments.map(c=>`<div class="comment"><b>${c[0]}</b><p>${c[1]}</p></div>`).join("")}</div><button class="close" type="button">기록 닫기</button></div>`;
-$("#article").classList.add("open");$("#article").scrollIntoView({behavior:"smooth",block:"start"});
-$("#article .close").onclick=()=>$("#article").classList.remove("open");
-}
-$$("[data-cat]").forEach(b=>b.onclick=()=>{currentCat=b.dataset.cat;$$("[data-cat]").forEach(x=>x.classList.toggle("active",x===b));renderBoard()});
-$("#searchButton").onclick=renderBoard;$("#searchInput").onkeydown=e=>{if(e.key==="Enter")renderBoard()};renderBoard();
 
+$("#article").className="article open";
+$("#article").innerHTML=`
+<div class="article-head">
+<small>${post.cat}</small>
+<h3>${post.title}</h3>
+<div class="meta">
+대상 ${post.target} · 담당 ${post.staff} · 조회 ${post.views.toLocaleString()}
+</div>
+</div>
+<div class="article-body">
+${renderPostImage(post)}
+<p>${post.text}</p>
+<div class="scores">
+${(post.scores||[]).map(score=>`
+<div class="score">
+<b>${score[1]}</b>
+<small>${score[0]}</small>
+</div>
+`).join("")}
+</div>
+<p>
+본 기록은 시민의 질서 의식 함양과 교육행정의 투명성 확보를 위해 공개되었습니다.
+대상자의 현재 상태에 따라 공개 범위는 조정될 수 있습니다.
+</p>
+<div class="comments">
+<h4>시민 의견</h4>
+${comments.map(comment=>`
+<div class="comment">
+<b>${comment[0]}</b>
+<p>${comment[1]}</p>
+</div>
+`).join("")}
+</div>
+<button class="close" type="button">기록 닫기</button>
+</div>
+`;
+}
+
+$("#article").scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+$("#article .close").onclick=()=>{
+$("#article").classList.remove("open");
+};
+}
+
+$$("[data-cat]").forEach(button=>{
+button.onclick=()=>{
+currentCat=button.dataset.cat;
+
+$$("[data-cat]").forEach(item=>{
+item.classList.toggle("active",item===button);
+});
+
+$("#article").classList.remove("open");
+renderBoard();
+};
+});
+
+$("#searchButton").onclick=renderBoard;
+
+$("#searchInput").onkeydown=event=>{
+if(event.key==="Enter")renderBoard();
+};
+
+renderBoard();
+
+  
 const docs={
 roleplay:{label:"필독",title:"신규 방문자를 위한 역할 및 신분 선택 안내",body:`<h4>권장 신분</h4><div class="guide"><b>신규 교육생</b><p>오메가버스에 관한 지식 없이 입소한 111번 교육생. 8주를 버티고 판사 검증을 통과하는 것이 기본 목표입니다.</p></div><div class="guide"><b>보조교관</b><p>강제복무 또는 신규 발령을 받아 교육소에서 근무합니다. 교육생 관리와 알파 자격 검증이 주요 목표입니다.</p></div><div class="guide"><b>자유 신분</b><p>견학자, 면회자, 판사, 의무관, 혁명가, 원주민 등 자유롭게 설정할 수 있습니다.</p></div><h4>역할 진행 권고</h4><ul><li>오메가버스를 모르는 상태에서 질문하며 배우는 진행이 적합합니다.</li><li>교육소에서는 본명보다 수번과 별명을 사용합니다.</li><li>체향을 미리 정하면 묘사의 일관성을 높일 수 있습니다.</li><li>선호 인물을 담당 교관이나 동실 교육생으로 지정할 수 있습니다.</li></ul>`},
 models:{label:"운영안내",title:"원활한 교육 진행을 위한 실행 환경별 특성",body:`<div class="guide"><b>Carbon</b><p>자유 도입과 고강도 전개에 적합합니다. 상황 판단이 빠르며 인물들이 다소 차갑게 표현될 수 있습니다.</p></div><div class="guide"><b>Argon</b><p>능글맞은 대화와 관계 중심 진행에 어울립니다.</p></div><div class="guide"><b>젬 3.8f</b><p>가벼운 진행에 적합하지만 복잡한 다인 관계에서는 정보 누락이 생길 수 있습니다.</p></div><div class="guide"><b>오푸스 5.5</b><p>티키타카와 반복 농담에 강하며 장기적인 관계극에 적합합니다.</p></div><div class="guide"><b>GPT</b><p>건조한 설정 진행과 설명 중심의 장면에 비교적 적합합니다.</p></div>`},
-commands:{label:"이용안내",title:"전자민원 및 교육 진행 명령어 안내",body:`<div class="guide"><b>시험</b><p>금요일 시험시간으로 이동해 학습한 이론을 평가합니다.</p></div><div class="guide"><b>스킵</b><p>현재 장면을 자연스럽게 생략하고 다음 시점으로 이동합니다.</p></div><div class="guide"><b>상담 + 인물명</b><p>지정 교관 또는 인물과 면담을 진행합니다.</p></div><div class="guide"><b>바꿔</b><p>담당 교관, 사수 또는 담당 교육생을 교체합니다.</p></div><div class="guide"><b>블랙</b><p>특별관리대상 등급으로 진행합니다.</p></div><div class="guide"><b>인물명 + 일지</b><p>해당 교관의 비공개 관찰일지를 확인합니다.</p></div><div class="guide"><b>웹 / 진순 / 진매</b><p>기관 홈페이지 열람 / 진행 강도 완화 / 진행 강도 상승에 사용합니다.</p></div>`},
+commands:{
+label:"이용안내",
+title:"전자민원 및 교육 진행 명령어 안내",
+body:`
+<p>명령어는 단독으로 입력하거나 필요한 경우 인물명을 함께 입력하십시오.</p>
+<div class="command-grid">
+<div class="command-card">
+<code>시험</code>
+<p>금요일 시험시간으로 이동해 학습한 이론을 평가합니다.</p>
+</div>
+<div class="command-card">
+<code>스킵</code>
+<p>현재 장면을 생략하고 자연스럽게 다음 시점으로 이동합니다.</p>
+</div>
+<div class="command-card">
+<code>상담 + 인물명</code>
+<p>지정 교관 또는 인물과 개별 면담을 진행합니다.</p>
+</div>
+<div class="command-card">
+<code>바꿔</code>
+<p>담당 교관, 사수 또는 담당 교육생을 교체합니다.</p>
+</div>
+<div class="command-card">
+<code>블랙</code>
+<p>특별관리대상 등급을 적용해 진행합니다.</p>
+</div>
+<div class="command-card">
+<code>인물명 + 일지</code>
+<p>지정 교관의 비공개 관찰일지를 확인합니다.</p>
+</div>
+<div class="command-card">
+<code>웹</code>
+<p>기관 홈페이지와 공개 자료를 열람합니다.</p>
+</div>
+<div class="command-card">
+<code>진순 / 진매</code>
+<p>진행 강도를 완화하거나 상승시킵니다.</p>
+</div>
+</div>
+`
+}
 creator:{label:"기관보",title:"제7교육소 운영 방향 및 설립 경위",body:`<h4>제작자 코멘트</h4><p>처음에는 꿈도 희망도 없는 고강도 수용소 작품을 목표로 시작했습니다. 그러나 설정의 개연성을 보완하고, 오메가버스를 모르는 이용자도 자연스럽게 진입할 수 있도록 교육소와 츳코미 구조를 추가하면서 장기 진행에 적합한 블랙코미디형 시뮬레이션으로 발전했습니다.</p><p>기본 과정은 무지한 차원이동자가 세계의 규칙을 배우는 코미디와 다인 관계극에 초점을 둡니다. 더 어둡고 강한 이야기를 원하는 경우 자유 도입을 통해 교육소의 통제, 제도와 인물 간 갈등을 전면에 배치할 수 있습니다.</p><p>엄격한 관공서 문체와 비정상적인 제도의 간극이 작품의 핵심입니다. 공식 기록은 언제나 친절하고 합리적인 얼굴을 하고 있지만, 그 기록을 읽는 과정에서 이 세계의 뒤틀린 상식을 발견하도록 설계했습니다.</p>`}
 };
 $("#noticeMenu").innerHTML=Object.entries(docs).map(([k,v],i)=>`<button class="${i?"":"active"}" data-doc-menu="${k}">${v.title}</button>`).join("");
