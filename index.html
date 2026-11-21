@@ -82,14 +82,152 @@ img{max-width:100%}
 .subnav{display:flex;overflow-x:auto;background:#f4f6f7;border-bottom:1px solid var(--line)}
 .subnav button{padding:13px 18px;border:0;border-right:1px solid var(--line);background:transparent;color:#61707a;font-size:11px;font-weight:900;white-space:nowrap}
 .subnav button:hover{background:#fff;color:var(--navy)}
-.greeting{display:grid;grid-template-columns:minmax(240px,.75fr) minmax(300px,1.25fr);gap:30px}
-.director{position:relative;min-height:470px;overflow:hidden;background:var(--navy)}
-.director img{width:100%;height:100%;min-height:470px;object-fit:cover;object-position:center top;filter:grayscale(.55) saturate(.48);opacity:.76}
-.director div{position:absolute;inset:auto 0 0;padding:75px 23px 21px;background:linear-gradient(transparent,rgba(4,22,37,.98));color:#fff}
-.director small{color:#a7c4d8;font-weight:900}.director b{display:block;font-size:21px}
-.letter{padding:clamp(27px,5vw,46px);background:#fff;border:1px solid var(--line)}
-.letter h3{margin:0 0 20px;color:var(--navy);font:900 clamp(23px,4vw,34px)/1.4 Georgia,"Noto Serif KR",serif}
-.letter p{color:#596771;font-size:13px;line-height:2}.signature{text-align:right;color:var(--navy);font-weight:900}
+
+.greeting{
+max-width:980px;
+margin:0 auto;
+}
+.letter{
+padding:clamp(27px,5vw,46px);
+background:#fff;
+border:1px solid var(--line);
+overflow:hidden;
+}
+.director-portrait{
+float:left;
+width:clamp(145px,20vw,205px);
+margin:0 24px 14px 0;
+background:var(--navy);
+border:1px solid var(--line);
+}
+.director-portrait img{
+display:block;
+width:100%;
+aspect-ratio:3/4;
+object-fit:cover;
+object-position:center top;
+filter:grayscale(.55) saturate(.48);
+opacity:.82;
+}
+.director-caption{
+padding:11px 13px;
+background:var(--navy);
+color:#fff;
+}
+.director-caption small{
+display:block;
+color:#a7c4d8;
+font-size:8px;
+font-weight:900;
+letter-spacing:.08em;
+}
+.director-caption b{
+display:block;
+margin-top:2px;
+font-size:12px;
+line-height:1.45;
+}
+.letter h3{
+margin:0 0 20px;
+color:var(--navy);
+font:900 clamp(23px,4vw,34px)/1.4 Georgia,"Noto Serif KR",serif;
+}
+.letter p{
+margin:0 0 15px;
+color:#596771;
+font-size:13px;
+line-height:2;
+}
+.letter-clear{
+clear:both;
+}
+.signature{
+margin-top:20px;
+text-align:right;
+color:var(--navy);
+font-weight:900;
+}
+
+.trainee-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+gap:16px;
+margin-bottom:28px;
+}
+.trainee-card{
+position:relative;
+overflow:hidden;
+background:#fff;
+border:1px solid var(--line);
+box-shadow:0 5px 18px rgba(8,34,57,.06);
+}
+.trainee-photo-wrap{
+position:relative;
+overflow:hidden;
+background:#cbd3d9;
+}
+.trainee-photo{
+display:block;
+width:100%;
+aspect-ratio:3/4;
+object-fit:cover;
+object-position:center top;
+filter:grayscale(.52) saturate(.55);
+}
+.trainee-number{
+position:absolute;
+left:0;
+top:0;
+padding:7px 10px;
+background:rgba(6,24,39,.93);
+color:#fff;
+font-size:9px;
+font-weight:900;
+letter-spacing:.08em;
+}
+.trainee-state{
+position:absolute;
+right:8px;
+bottom:8px;
+padding:4px 8px;
+background:#e7eff5;
+color:var(--blue);
+border:1px solid rgba(255,255,255,.8);
+font-size:9px;
+font-weight:900;
+}
+.trainee-state.danger{
+background:var(--red);
+color:#fff;
+}
+.trainee-info{
+padding:16px;
+}
+.trainee-info em{
+color:var(--blue);
+font-size:9px;
+font-style:normal;
+font-weight:900;
+letter-spacing:.08em;
+}
+.trainee-info h3{
+margin:5px 0 1px;
+color:var(--navy);
+font-size:19px;
+}
+.trainee-info small{
+color:#84909a;
+font-size:10px;
+}
+.trainee-info p{
+margin:11px 0 0;
+padding-top:10px;
+border-top:1px solid #e1e6e9;
+color:#5e6c76;
+font-size:10px;
+line-height:1.7;
+}
+
 .number-grid,.facility-grid,.system-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
 .number-card,.facility{padding:25px 20px;background:#fff;border:1px solid var(--line)}
 .number-card{border-top:4px solid var(--navy);text-align:center}
@@ -172,7 +310,30 @@ body{background:#fff}.site{box-shadow:none}.govbar,.header-links,.desktop-nav,.s
 .page{display:block!important;min-height:0}.page+.page{border-top:7px solid #dfe5e9}
 .hero{min-height:500px}.hero-content{padding:95px 21px 57px}.hero h1{font-size:41px}.hero p{font-size:13px}
 .home-area{padding:28px 14px 52px}.quick{grid-template-columns:repeat(2,1fr);margin-top:-55px}.quick button:nth-child(2){border-right:0}.quick button:nth-child(-n+2){border-bottom:1px solid var(--line)}
-.home-grid,.greeting,.route,.notice-layout{grid-template-columns:1fr}.notice-row{grid-template-columns:53px 1fr 62px}
+.home-grid,.route,.notice-layout{grid-template-columns:1fr}
+.director-portrait{
+width:132px;
+margin:0 16px 10px 0;
+}
+.director-caption{
+padding:8px 9px;
+}
+.director-caption b{
+font-size:10px;
+}
+.trainee-grid{
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:9px;
+}
+.trainee-info{
+padding:11px;
+}
+.trainee-info h3{
+font-size:16px;
+}
+.trainee-info p{
+font-size:9px;
+}
 .number-grid,.facility-grid,.system-grid{grid-template-columns:repeat(2,1fr)}
 .timeline{display:block;padding-left:22px}.timeline:before{left:24px;right:auto;top:20px;bottom:20px;width:2px;height:auto}.step{min-height:78px;padding-left:64px;text-align:left}.step b{position:absolute;left:0;margin:0}.step h3{margin-top:0}
 .people-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.person div{padding:11px}.person h3{font-size:16px}.person p{font-size:9px}
@@ -223,10 +384,29 @@ body{background:#fff}.site{box-shadow:none}.govbar,.header-links,.desktop-nav,.s
 
 <section id="institution" class="page">
 <nav class="subnav"><button data-anchor="director">소장 인사</button><button data-anchor="scale">기관 규모</button><button data-anchor="facilities">시설 안내</button><button data-anchor="curriculum">교육 과정</button><button data-anchor="systems">운영 제도</button></nav>
-<section id="director" class="section gray"><div class="head"><div class="eyebrow">DIRECTOR'S MESSAGE</div><h2 class="title">소장 인사</h2></div><div class="greeting">
-<div class="director"><img src="https://img.univers.chat/characters/c0f25158-e1bd-4135-975b-3fc0b762c08f/2666eb99-5c44-4707-918a-c0f69348a00b.webp?imagePrivacy=privacy-v2" alt="교육소장"><div><small>DIRECTOR · 52세</small><b>국립 제7오메가교육소장</b></div></div>
-<div class="letter"><h3>올바른 자리는<br>누구에게나 마련되어 있습니다.</h3><p>국립 제7오메가교육소를 찾아주신 시민 여러분께 감사드립니다. 본 교육소는 교육 대상자가 자신의 본분과 사회적 책임을 이해하고 안정된 질서 속에서 사회로 복귀할 수 있도록 지원합니다.</p><p>교육은 처벌이 아닙니다. 잘못된 선택을 반복하지 않도록 가르치고, 스스로 선택하기 어려운 이에게 올바른 답을 제시하는 보호의 과정입니다.</p><p>아직 교육의 필요성을 받아들이지 못한 분도 염려하지 마십시오. 저희는 기다리는 일에 익숙합니다. 누구나 결국 자신의 자리를 이해하게 됩니다.</p><div class="signature">국립 제7오메가교육소장 드림</div></div>
-</div></section>
+<section id="director" class="section gray">
+<div class="head">
+<div class="eyebrow">DIRECTOR'S MESSAGE</div>
+<h2 class="title">소장 인사</h2>
+</div>
+<div class="greeting">
+<div class="letter">
+<div class="director-portrait">
+<img src="https://img.univers.chat/characters/c0f25158-e1bd-4135-975b-3fc0b762c08f/2666eb99-5c44-4707-918a-c0f69348a00b.webp?imagePrivacy=privacy-v2" alt="국립 제7오메가교육소장">
+<div class="director-caption">
+<small>DIRECTOR · 52세</small>
+<b>국립 제7오메가교육소장</b>
+</div>
+</div>
+<h3>올바른 자리는<br>누구에게나 마련되어 있습니다.</h3>
+<p>국립 제7오메가교육소를 찾아주신 시민 여러분께 감사드립니다. 본 교육소는 교육 대상자가 자신의 본분과 사회적 책임을 이해하고 안정된 질서 속에서 사회로 복귀할 수 있도록 지원합니다.</p>
+<p>교육은 처벌이 아닙니다. 잘못된 선택을 반복하지 않도록 가르치고, 스스로 선택하기 어려운 이에게 올바른 답을 제시하는 보호의 과정입니다.</p>
+<p class="letter-clear">다소 엄격해 보이는 규정도 교육생의 안전과 장래를 위해 마련되었습니다. 본 교육소는 모든 교육 과정을 객관적으로 기록하고, 대상자의 적응 수준에 따라 필요한 보호와 지도를 제공합니다.</p>
+<p>아직 교육의 필요성을 받아들이지 못한 분도 염려하지 마십시오. 저희는 기다리는 일에 익숙합니다. 누구나 결국 자신의 자리를 이해하게 됩니다.</p>
+<div class="signature">국립 제7오메가교육소장 드림</div>
+</div>
+</div>
+</section>  
 <section id="scale" class="section white"><div class="head"><div class="eyebrow">INSTITUTIONAL SCALE</div><h2 class="title">기관 규모</h2><p class="lead">법정 의무교육과 사회 복귀 심사를 수행하기 위한 전문 인력과 교육시설을 운영합니다.</p></div><div class="number-grid"><div class="number-card"><strong>10명</strong><b>교관 정원</b><small>보조·특수 담당 포함</small></div><div class="number-card"><strong>30명</strong><b>기수별 정원</b><small>보안등급별 분리 배치</small></div><div class="number-card"><strong>8주</strong><b>기본 과정</b><small>검증 실패 시 연장</small></div><div class="number-card"><strong>24H</strong><b>생활 관리</b><small>당직 교관 상시 배치</small></div></div></section>
 <section id="facilities" class="section gray"><div class="head"><div class="eyebrow">FACILITIES</div><h2 class="title">시설 안내</h2></div><div class="facility-grid">
 <article class="facility"><em>A</em><h3>생활동</h3><p>개인실, 3인실, 6인실, 보호 독방. 등급과 관리 필요도에 따라 배정됩니다.</p></article>
@@ -243,7 +423,22 @@ body{background:#fff}.site{box-shadow:none}.govbar,.header-links,.desktop-nav,.s
 <section id="people" class="page">
 <section class="section navy"><div class="head"><div class="eyebrow">FACULTY REGISTER</div><h2 class="title">패컬티 현황</h2><p class="lead">공개 가능한 인사정보만 표시됩니다.</p></div><div id="facultyGrid" class="people-grid"></div></section>
 <section class="section gray"><div class="head"><div class="eyebrow">PUBLIC TRAINEE REGISTER</div><h2 class="title">교육생 공개 명부</h2><p class="lead">사회 안전과 시민의 알 권리를 위해 수번과 편입 사유를 공개합니다.</p></div>
-<div class="table-wrap"><table><thead><tr><th>수번</th><th>별명</th><th>연령</th><th>편입 사유</th><th>상태</th><th>비고</th></tr></thead><tbody id="traineeTable"></tbody></table></div><div id="mobileRegister" class="mobile-register"></div>
+<div id="traineeGrid" class="trainee-grid"></div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>수번</th>
+<th>별명</th>
+<th>연령</th>
+<th>편입 사유</th>
+<th>상태</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody id="traineeTable"></tbody>
+</table>
+</div>
 </section></section>
 
 <section id="archive" class="page"><section class="section gray"><div class="head"><div class="eyebrow">PUBLIC EDUCATION ARCHIVE</div><h2 class="title">교육자료실</h2><p class="lead">교육소장이 공익적 가치가 있다고 판단한 교육 경과와 시민 의견을 공개합니다.</p></div>
@@ -317,26 +512,185 @@ $$("[data-anchor]").forEach(b=>b.addEventListener("click",()=>document.getElemen
 $$("[data-scroll]").forEach(b=>b.addEventListener("click",()=>document.getElementById(b.dataset.scroll)?.scrollIntoView({behavior:"smooth"})));
 
 const faculty=[
-["K","카즈키","31세","매뉴얼","생활규정 담당","냉담하고 칼 같은 집행으로 알려진 원칙형 교관."],
-["A","안드레이","42세","셰퍼드","기초교육 담당","온화해 보이지만 예외를 인정하지 않는 원칙주의자."],
-["D","도미닉","33세","빅D","생활안정 담당","험상궂은 외관과 달리 안정적이고 다정한 교육을 시행합니다."],
-["B","데릭","28세","스몰D","특별교육 담당","교육생의 반응과 한계를 관찰하는 데 높은 관심을 보입니다."],
-["L","아페이","44세","다이스","평가 담당","예측하기 어려운 기준과 변칙적인 진행으로 알려진 교관."],
-["ASSISTANT","니코","24세","애송이 닉","보조교관","의무복무 중이며 현장 보조와 교육생 인솔을 담당합니다."]
+{
+code:"K",
+name:"카즈키",
+age:"31세",
+alias:"매뉴얼",
+role:"생활규정 담당",
+description:"냉담하고 칼 같은 집행으로 알려진 원칙형 교관.",
+image:IMG
+},
+{
+code:"A",
+name:"안드레이",
+age:"42세",
+alias:"셰퍼드",
+role:"기초교육 담당",
+description:"온화해 보이지만 예외를 인정하지 않는 원칙주의자.",
+image:IMG
+},
+{
+code:"D",
+name:"도미닉",
+age:"33세",
+alias:"빅D",
+role:"생활안정 담당",
+description:"험상궂은 외관과 달리 안정적이고 다정한 교육을 시행합니다.",
+image:IMG
+},
+{
+code:"B",
+name:"데릭",
+age:"28세",
+alias:"스몰D",
+role:"특별교육 담당",
+description:"교육생의 반응과 한계를 관찰하는 데 높은 관심을 보입니다.",
+image:IMG
+},
+{
+code:"L",
+name:"아페이",
+age:"44세",
+alias:"다이스",
+role:"평가 담당",
+description:"예측하기 어려운 기준과 변칙적인 진행으로 알려진 교관.",
+image:IMG
+},
+{
+code:"ASSISTANT",
+name:"니코",
+age:"24세",
+alias:"애송이 닉",
+role:"보조교관",
+description:"의무복무 중이며 현장 보조와 교육생 인솔을 담당합니다.",
+image:IMG
+},
+{
+code:"MEDICAL",
+name:"의무관",
+age:"연령 비공개",
+alias:"의료 패컬티",
+role:"의무실·형질 안정 담당",
+description:"교육생의 건강 상태, 형질 이상과 응급 상황을 담당합니다.",
+image:IMG
+}
 ];
-$("#facultyGrid").innerHTML=faculty.map(x=>`<article class="person"><img src="${IMG}" alt="${x[1]}"><div><em>${x[0]} · ${x[3]}</em><h3>${x[1]}</h3><small>${x[2]} · ${x[4]}</small><p>${x[5]}</p></div></article>`).join("");
+
+$("#facultyGrid").innerHTML=faculty.map(person=>`
+<article class="person">
+<img src="${person.image}" alt="${person.name}">
+<div>
+<em>${person.code} · ${person.alias}</em>
+<h3>${person.name}</h3>
+<small>${person.age} · ${person.role}</small>
+<p>${person.description}</p>
+</div>
+</article>
+`).join("");
 
 const trainees=[
-["112","토토","23세","공공음란","교육 중","순응 관찰"],
-["113","핑크","26세","불순종","교육 중","진술 검토"],
-["114","벨라","28세","풍기문란·페로몬 오남용","집중 관찰","접촉 주의"],
-["115","킬링","31세","강간·상간","특별교육","변환형"],
-["116","체어","49세","반체제선전죄","보안 관찰","전직 의원"],
-["117","노미","26세","본딩 실패","신규 입소","기초평가"]
+{
+number:"112",
+name:"토토",
+age:"23세",
+charge:"공공음란",
+state:"교육 중",
+note:"순응 관찰",
+description:"생활규칙 적응 상태와 지시 이행 경과를 관찰하고 있습니다.",
+image:IMG
+},
+{
+number:"113",
+name:"핑크",
+age:"26세",
+charge:"불순종",
+state:"교육 중",
+note:"진술 검토",
+description:"편입 경위에 관한 진술과 교육 수용 태도를 지속적으로 검토합니다.",
+image:IMG
+},
+{
+number:"114",
+name:"벨라",
+age:"28세",
+charge:"풍기문란·페로몬 오남용",
+state:"집중 관찰",
+note:"접촉 주의",
+description:"페로몬 안정 상태와 대인 접촉 과정에 별도 관리가 적용됩니다.",
+image:IMG
+},
+{
+number:"115",
+name:"킬링",
+age:"31세",
+charge:"강간·상간",
+state:"특별교육",
+note:"변환형",
+description:"특별교육 대상자로 분류되어 행동 변화와 규정 이행을 관찰합니다.",
+image:IMG
+},
+{
+number:"116",
+name:"체어",
+age:"49세",
+charge:"반체제선전죄",
+state:"보안 관찰",
+note:"전직 의원",
+description:"보안 대상자로 지정되어 발언과 외부 접촉 기록을 별도 관리합니다.",
+image:IMG
+},
+{
+number:"117",
+name:"노미",
+age:"26세",
+charge:"본딩 실패",
+state:"신규 입소",
+note:"기초평가",
+description:"신규 입소 절차에 따라 형질·생활 적응 기초평가를 진행 중입니다.",
+image:IMG
+}
 ];
-$("#traineeTable").innerHTML=trainees.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td>${x[2]}</td><td>${x[3]}</td><td><span class="status ${/특별|집중|보안/.test(x[4])?"red":""}">${x[4]}</span></td><td>${x[5]}</td></tr>`).join("");
-$("#mobileRegister").innerHTML=trainees.map(x=>`<article><b>${x[0]}번 · ${x[1]}</b><p>${x[2]} · ${x[3]} · ${x[4]}</p></article>`).join("");
 
+$("#traineeGrid").innerHTML=trainees.map(trainee=>{
+const danger=/특별|집중|보안/.test(trainee.state);
+
+return `
+<article class="trainee-card">
+<div class="trainee-photo-wrap">
+<img
+class="trainee-photo"
+src="${trainee.image}"
+alt="${trainee.number}번 ${trainee.name}"
+>
+<span class="trainee-number">수번 ${trainee.number}</span>
+<span class="trainee-state ${danger?"danger":""}">${trainee.state}</span>
+</div>
+<div class="trainee-info">
+<em>PUBLIC TRAINEE RECORD</em>
+<h3>${trainee.name}</h3>
+<small>${trainee.age} · ${trainee.charge}</small>
+<p>${trainee.description}</p>
+</div>
+</article>
+`;
+}).join("");
+
+$("#traineeTable").innerHTML=trainees.map(trainee=>`
+<tr>
+<td>${trainee.number}</td>
+<td>${trainee.name}</td>
+<td>${trainee.age}</td>
+<td>${trainee.charge}</td>
+<td>
+<span class="status ${/특별|집중|보안/.test(trainee.state)?"red":""}">
+${trainee.state}
+</span>
+</td>
+<td>${trainee.note}</td>
+</tr>
+`).join("");
+  
 const posts=[
 {id:146,cat:"기초교육",title:"제14차 기초 질서교육 참관 기록",target:"112번",staff:"교관 K",date:"03.07",views:841,text:"생활 규칙 숙지와 지시 이행을 중심으로 정기 교육을 실시했습니다. 대상자는 초기 설명 중 세 차례 질문했으나 반복 안내 이후 요구된 순서를 이행했습니다.",scores:[["규정 이해","78"],["지시 이행","84"],["태도 안정","91"],["재교육","불필요"]]},
 {id:145,cat:"우수사례",title:"117번 신규 입소자 1주차 적응 경과",target:"117번",staff:"교관 A",date:"03.05",views:1260,text:"대상자는 형질 제도에 대한 기초 지식이 부족했으나 질문과 기록을 통해 빠르게 적응했습니다. 다른 세계에서 왔다는 진술은 교육 적응 과정에서 흔히 관찰되는 회피성 표현으로 분류했습니다.",scores:[["이론","88"],["생활","81"],["순응","76"],["등급","일반"]]},
